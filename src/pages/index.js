@@ -9,11 +9,6 @@ class IndexPage extends React.Component {
   state = { loading: false, msg: null }
   handleClick = e => {
     e.preventDefault()
-
-    this.setState({ loading: true })
-    fetch("/.netlify/functions/token-hider")
-      .then(response => response.json())
-      .then(json => this.setState({ loading: false, msg: json.message }))
   }
 
   render() {
@@ -71,15 +66,6 @@ class IndexPage extends React.Component {
               </li>
             </ul>
             <hr />
-            <p>
-              You can still access Netlify functions even on static "marketing
-              pages". This function is available at{" "}
-              <a href="/.netlify/functions/token-hider">
-                <code>/.netlify/functions/token-hider</code>
-              </a>{" "}
-              and it uses an API_SECRET environment variable that is hidden from
-              the frontend!
-            </p>
             <button onClick={this.handleClick}>
               {loading ? "Loading..." : "Call Lambda Function"}
             </button>
